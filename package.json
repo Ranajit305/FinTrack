@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npm --prefix backend start"
+    "start": "npm --prefix backend start",
+    "postinstall": "npm --prefix backend install"
   },
   "repository": {
     "type": "git",
