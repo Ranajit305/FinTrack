@@ -9,16 +9,19 @@ import { useTransactionStore } from './stores/useTransactionStore'
 import Analytics from './pages/Analytics'
 import Footer from './components/Footer'
 import { useBudgetStore } from './stores/useBudgetStore'
+import { axiosUrl } from './utils/axios'
 
 const App = () => {
 
-  const { getTransactions } = useTransactionStore();
+  const { getTransactions, transactions } = useTransactionStore();
   const { getBudgets } = useBudgetStore();
 
   useEffect(() => {
     getTransactions();
     getBudgets();
   }, [])
+  console.log(transactions);
+  console.log(axiosUrl);
 
   return (
     <div>
