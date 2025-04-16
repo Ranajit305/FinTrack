@@ -7,7 +7,9 @@ export const useTransactionStore = create((set, get) => ({
 
     getTransactions: async () => {
         try {
+            console.log(axiosUrl);
             const res = await axiosUrl.get('/transaction');
+            console.log(res);
             set({transactions: res.data })
         } catch (error) {
             console.log(error.response.data.message);
