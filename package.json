@@ -1,0 +1,20 @@
+{
+  "name": "personal-finance",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm --prefix backend start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ranajit305/FinTrack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ranajit305/FinTrack/issues"
+  },
+  "homepage": "https://github.com/Ranajit305/FinTrack#readme",
+  "description": ""
+}
