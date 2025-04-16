@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { X, DollarSign, Type, Tag } from "lucide-react";
+import { X, DollarSign, Type, Tag, Loader } from "lucide-react";
 import { useTransactionStore } from "../stores/useTransactionStore";
 
 const AddTransaction = ({ setShowAddForm }) => {
-  const { addTransaction } = useTransactionStore();
+  const { addTransaction, loading } = useTransactionStore();
 
   const [newTransaction, setNewTransaction] = useState({
     amount: "",
@@ -22,9 +22,9 @@ const AddTransaction = ({ setShowAddForm }) => {
     "Other",
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addTransaction(
+    await addTransaction(
       newTransaction.amount,
       newTransaction.description,
       newTransaction.category
@@ -152,9 +152,19 @@ const AddTransaction = ({ setShowAddForm }) => {
               <div className="mt-8 flex justify-end space-x-3">
                 <button
                   type="submit"
-                  className="px-4 py-2 cursor-pointer bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  disabled={loading}
+                  className={`px-4 py-2 flex items-center justify-center gap-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+                    loading ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
                 >
-                  Add Transaction
+                  {loading ? (
+                    <>
+                      <Loader className="h-4 w-4 animate-spin" />
+                      Adding Transaction...
+                    </>
+                  ) : (
+                    "Add Transaction"
+                  )}
                 </button>
               </div>
             </form>
