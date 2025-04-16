@@ -34,6 +34,7 @@ export const useTransactionStore = create((set, get) => ({
     },
 
     editTransaction: async (transactionId, amount, description, category) => {
+        set({ loading: true })
         try {
             const res = await axiosUrl.put(`/transaction/${transactionId}`, {amount, description, category});
             if (res.data.success) {
@@ -45,6 +46,8 @@ export const useTransactionStore = create((set, get) => ({
             toast.dismiss();
             toast.error(error.response.data.message);
             console.log(error.response.data.message);
+        } finally {
+            set({ loading: false })
         }
     },
 

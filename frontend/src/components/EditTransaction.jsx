@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { X, DollarSign, Type, Tag } from "lucide-react";
+import { X, DollarSign, Type, Tag, Loader } from "lucide-react";
 import { useTransactionStore } from "../stores/useTransactionStore";
 
-const EditTransaction = ({ selectedTransaction, setSelectedTransaction, setEditTransactionForm }) => {
-  const { editTransaction } = useTransactionStore();
+const EditTransaction = ({
+  selectedTransaction,
+  setSelectedTransaction,
+  setEditTransactionForm,
+}) => {
+  const { editTransaction, loading } = useTransactionStore();
 
   const [newTransaction, setNewTransaction] = useState({
     amount: selectedTransaction.amount,
@@ -23,13 +27,18 @@ const EditTransaction = ({ selectedTransaction, setSelectedTransaction, setEditT
   ];
 
   const handleTransactionClose = () => {
-    setSelectedTransaction('');
+    setSelectedTransaction("");
     setEditTransactionForm(false);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    editTransaction(selectedTransaction._id, Number(newTransaction.amount), newTransaction.description, newTransaction.category);
+    await editTransaction(
+      selectedTransaction._id,
+      Number(newTransaction.amount),
+      newTransaction.description,
+      newTransaction.category
+    );
     setEditTransactionForm(false);
   };
 
@@ -40,9 +49,7 @@ const EditTransaction = ({ selectedTransaction, setSelectedTransaction, setEditT
         <div className="bg-white rounded-2xl overflow-hidden shadow-xl transform transition-all">
           {/* Modal Header */}
           <div className="bg-indigo-600 px-4 sm:px-6 py-4 flex justify-between items-center">
-            <h3 className="text-lg font-medium text-white">
-              Edit Transaction
-            </h3>
+            <h3 className="text-lg font-medium text-white">Edit Transaction</h3>
             <button
               onClick={() => handleTransactionClose()}
               className="text-white hover:text-indigo-200 focus:outline-none"
@@ -153,9 +160,19 @@ const EditTransaction = ({ selectedTransaction, setSelectedTransaction, setEditT
               <div className="mt-8 flex justify-end space-x-3">
                 <button
                   type="submit"
-                  className="px-4 py-2 cursor-pointer bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  disabled={loading}
+                  className={`px-4 py-2 flex items-center justify-center gap-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
+                    loading ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
                 >
-                  Save Transaction
+                  {loading ? (
+                    <>
+                      <Loader className="h-4 w-4 animate-spin" />
+                      Saving Transaction...
+                    </>
+                  ) : (
+                    "Save Transaction"
+                  )}
                 </button>
               </div>
             </form>
