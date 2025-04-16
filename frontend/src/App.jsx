@@ -21,7 +21,7 @@ const App = () => {
     getBudgets();
   }, [])
   console.log(transactions);
-  console.log(axiosUrl);
+  console.log(axiosUrl.defaults.baseURL);
 
   return (
     <div>
