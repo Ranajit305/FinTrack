@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import DateManager from "../components/DateManager";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DateContext } from "../context/DateContext";
 import { ClockIcon } from "lucide-react";
 
@@ -70,6 +70,10 @@ const Dashboard = () => {
       spent,
     };
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-indigo-100 p-4">

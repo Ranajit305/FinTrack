@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Plus, Trash, FolderX, Edit, ClipboardList } from "lucide-react";
 
 import AddTransaction from "../components/AddTransaction";
@@ -26,6 +26,10 @@ const Transactions = () => {
     setSelectedTransaction(transaction);
     setEditTransactionForm(true);
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">

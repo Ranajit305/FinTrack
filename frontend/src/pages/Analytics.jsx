@@ -23,7 +23,6 @@ const Analytics = () => {
 
   const [isMobile, setIsMobile] = useState(false);
 
-  // Set up responsive detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
@@ -32,6 +31,10 @@ const Analytics = () => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   const filteredTransactions = transactions.filter((transaction) => {
     const date = new Date(transaction.createdAt);

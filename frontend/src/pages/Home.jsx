@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ArrowRight,
   PieChart,
@@ -10,6 +10,11 @@ import {
 import { Link } from "react-router-dom";
 
 export const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className=" bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Hero Section */}

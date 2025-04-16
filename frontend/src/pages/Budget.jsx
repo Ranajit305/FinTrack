@@ -116,6 +116,10 @@ const Budget = () => {
     difference: item.difference,
   }));
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
