@@ -23,7 +23,7 @@ app.use('/api/transaction', transactionRouter);
 app.use('/api/budget', budgetRouter);
 
 app.get('/', (req, res) => {
-    res.send("API Working");
+    res.send(process.env.CLIENT_URL);
 })
 
 // Start Server
