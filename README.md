@@ -4,5 +4,5 @@
 - Axios is used for API communication between the client and server.  
 - To run locally, install dependencies in both `backend` and `frontend` folders using `npm install`.  
 - Use `npm run dev` to start both frontend and backend development servers.  
-- Make sure to set up environment variables like `MONGO_URI`, `JWT_SECRET`, `PORT` for smooth operation.  
+- Make sure to set up environment variables like `MONGO_URI`, `PORT` for smooth operation.  
 - The application is fully responsive and designed to provide a clean user experience for monthly financial tracking.
